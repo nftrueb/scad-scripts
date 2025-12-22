@@ -7,7 +7,7 @@ wall_t = 12;
 
 w = 80 + wall_t*2; 
 l = w/2; 
-h = 120; 
+h = 127; 
 
 module peg(rad, is_male=true) { 
     padding = is_male ? 0 : .75;
@@ -24,15 +24,19 @@ module peg(rad, is_male=true) {
 module body() { 
     difference() { 
         union() { 
+            // outer 
+            translate([0,0,h/2])
+            cube([w-wall_t*2, l, h], center=true);      
+            
+            // outer
             translate([0,0,h/2])
             cube([w-wall_t*2, l, h], center=true); 
             
-            translate([0,0,h/2])
-            cube([w-wall_t*2, l, h], center=true); 
-            
+            // outer
             translate([0,wall_t/2,h/2])
             cube([w, l-wall_t, h], center=true); 
             
+            // corner
             intersection() { 
                 translate([w/2-wall_t, -l/2+wall_t, 0])
                 cylinder(h, wall_t, wall_t); 
@@ -41,6 +45,7 @@ module body() {
                 cube([wall_t*2, wall_t*2, h], center=true); 
             }
             
+            // corner
             intersection() { 
                 translate([-w/2+wall_t, -l/2+wall_t, 0])
                 cylinder(h, wall_t, wall_t); 
@@ -48,10 +53,47 @@ module body() {
                 translate([-w/2+wall_t, -l/2+wall_t, h/2])
                 cube([wall_t*2, wall_t*2, h], center=true); 
             }
+            
+            // top side
+            hull() { 
+                translate([w/2-wall_t,-l/2+wall_t,h])
+                sphere(wall_t); 
+                
+                translate([-w/2+wall_t,-l/2+wall_t,h])
+                sphere(wall_t); 
+            }
+            
+            // top side
+            hull() { 
+                translate([w/2-wall_t,-l/2+wall_t,h])
+                sphere(wall_t); 
+                
+                translate([w/2-wall_t,l/2,h])
+                sphere(wall_t); 
+            }
+            
+            // top side
+            hull() { 
+                translate([-w/2+wall_t,-l/2+wall_t,h])
+                sphere(wall_t); 
+                
+                translate([-w/2+wall_t,l/2,h])
+                sphere(wall_t); 
+            }
+            
+            // top
+            translate([-40,-l/2+wall_t,h])
+            cube([80, l-wall_t, wall_t]);
         }
         
-        translate([0,wall_t,h/2])
-        cube([w-wall_t*2, l, h+20], center=true);   
+        translate([0,wall_t,h/2-15])
+        cube([w-wall_t*2, l, h+30], center=true); 
+        
+        translate([0, l/2+10, h/2])
+        cube([w+20, 20, h+30], center=true); 
+        
+        translate([-15,-l/2+wall_t,h-wall_t/2])
+        cube([30, l, wall_t*2]); 
     }
 }
 
@@ -128,10 +170,10 @@ module female() {
     }
 }
 
-translate([200,0,l/2])
-rotate([90,0,0])
-male(); 
+//translate([200,0,l/2])
+//rotate([90,0,0])
+//male(); 
 
-translate([0,0,l/2])
-rotate([90,0,0])
+//translate([0,0,l/2])
+//rotate([90,0,0])
 female(); 
