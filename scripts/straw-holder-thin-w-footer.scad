@@ -12,25 +12,29 @@ module end(i) {
             translate([-9-cutout_r,-10,0]) cube([cutout_r, 20, 9]);
         }
         
-        #translate([0,0,9])
-        hull() {
-            rotate([90,0,0]) cylinder(55, cutout_r, cutout_r, center=true); 
-            translate([0,0,60]) rotate([90,0,0])  cylinder(50, cutout_r, cutout_r, center=true); 
-        }
-        
-        #translate([9+cutout_r,0,9])
-        hull() {
-            rotate([90,0,0]) cylinder(55, cutout_r, cutout_r, center=true); 
-            translate([0,0,60]) rotate([90,0,0])  cylinder(50, cutout_r, cutout_r, center=true); 
-        }
-        
-        #translate([-9-cutout_r,0,9])
-        hull() {
-            rotate([90,0,0]) cylinder(55, cutout_r, cutout_r, center=true); 
-            translate([0,0,60]) rotate([90,0,0])  cylinder(50, cutout_r, cutout_r, center=true); 
-        }
+        //void(); 
     }
    
+}
+
+module void() { 
+    translate([0,0,9])
+    hull() {
+        rotate([90,0,0]) cylinder(55, cutout_r, cutout_r, center=true); 
+        translate([0,0,60]) rotate([90,0,0])  cylinder(50, cutout_r, cutout_r, center=true); 
+    }
+    
+    translate([9+cutout_r,0,9])
+    hull() {
+        rotate([90,0,0]) cylinder(55, cutout_r, cutout_r, center=true); 
+        translate([0,0,60]) rotate([90,0,0])  cylinder(50, cutout_r, cutout_r, center=true); 
+    }
+    
+    translate([-9-cutout_r,0,9])
+    hull() {
+        rotate([90,0,0]) cylinder(55, cutout_r, cutout_r, center=true); 
+        translate([0,0,60]) rotate([90,0,0])  cylinder(50, cutout_r, cutout_r, center=true); 
+    }
 }
 
 module bridge() { 

@@ -11,7 +11,8 @@ module peg(rad, is_male=true) {
     // 4rd -> .075mm of tolerance
     // 5th -> .05mm of tolerance
     // 6th -> .06mm
-    padding = is_male ? 0 : .06;
+    // 7th -> .055mm of tolerance
+    padding = is_male ? 0 : .055;
     echo(padding); 
     minkowski() { 
         translate([-peg_l/2,0,0]) 
